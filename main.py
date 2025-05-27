@@ -21,3 +21,11 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(db_user)
     return db_user
+
+
+@app.get("/user/{hashid}", response_model=schemas.UserResponse)
+async def get_user(hashid: str, db: Session = Depends(get_db)):
+    user = db.query(models.User).filter(models.User.id == hashid).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="user not found")
+    return user

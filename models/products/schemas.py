@@ -5,8 +5,10 @@ class UserBase(BaseModel):
     email: str
     full_name: str | None = None
 
+
 class UserCreate(UserBase):
     pass
+
 
 class UserResponse(UserBase):
     id: int
