@@ -15,3 +15,7 @@ class UserResponse(UserBase):
 
     class Config:
         orm_mode = True
+
+        
+class UserIDRequest(BaseModel):
+    id: int  # ou UUID, dependendo do seu modelo
